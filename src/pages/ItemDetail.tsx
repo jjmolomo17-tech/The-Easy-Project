@@ -9,8 +9,8 @@
  * ============================================================ */
 
 import { useParams, Link } from "react-router-dom";
-import { ITEMS } from "../data/items";   // ✅ Use correct export name
-import { Item } from "../types/Item";    // ✅ Ensure Item.ts exists
+import { ITEMS } from "../data/items";   //  Use correct export name
+import { Item } from "../types/Item";    //  Ensure Item.ts exists
 
 export default function ItemDetail() {
   // Get item ID from route
