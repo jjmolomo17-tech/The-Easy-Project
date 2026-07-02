@@ -10,15 +10,15 @@
 
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { items } from "../data/items";
-import { Item } from "../types/Item";
+import { ITEMS } from "../data/items";   // ✅ Correct import name
+import { Item } from "../types/Item";    // ✅ Correct type import
 
 export default function Booking() {
   // Get item ID from route
   const { id } = useParams();
 
-  // Find the item by ID
-  const item: Item | undefined = items.find((i) => i.id === id);
+  // Find the item by ID (typed parameter avoids implicit 'any')
+  const item: Item | undefined = ITEMS.find((i: Item) => i.id === id);
 
   // If item not found, show error
   if (!item) {
@@ -37,7 +37,8 @@ export default function Booking() {
 
   return (
     <main className="p-4 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Booking: {item.name}</h1>
+      {/* Use item.title instead of item.name */}
+      <h1 className="text-2xl font-bold mb-4">Booking: {item.title}</h1>
 
       {/* Step 1: Select dates */}
       {step === 1 && (
@@ -76,7 +77,7 @@ export default function Booking() {
       {step === 2 && !confirmed && (
         <div>
           <p className="mb-4">
-            You are booking <strong>{item.name}</strong> from{" "}
+            You are booking <strong>{item.title}</strong> from{" "}
             <strong>{startDate}</strong> to <strong>{endDate}</strong>.
           </p>
           <button
@@ -95,26 +96,11 @@ export default function Booking() {
             Booking Confirmed!
           </h2>
           <p>
-            You have successfully booked <strong>{item.name}</strong> from{" "}
+            You have successfully booked <strong>{item.title}</strong> from{" "}
             <strong>{startDate}</strong> to <strong>{endDate}</strong>.
           </p>
         </div>
       )}
-    </main>
-  );
-}
-
-
-/* ============================================================
- * Booking.tsx — Placeholder
- * Replace with booking flow implementation.
- * ============================================================ */
-
-export default function Booking() {
-  return (
-    <main className="p-4">
-      <h1>Booking Screen</h1>
-      <p>This is a placeholder. Implement booking flow here.</p>
     </main>
   );
 }
