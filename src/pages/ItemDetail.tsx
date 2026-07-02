@@ -9,15 +9,15 @@
  * ============================================================ */
 
 import { useParams, Link } from "react-router-dom";
-import { items } from "../data/items";
-import { Item } from "../types/Item";
+import { ITEMS } from "../data/items";   // ✅ Use correct export name
+import { Item } from "../types/Item";    // ✅ Ensure Item.ts exists
 
 export default function ItemDetail() {
   // Get item ID from route
   const { id } = useParams();
 
   // Find the item by ID
-  const item: Item | undefined = items.find((i) => i.id === id);
+  const item: Item | undefined = ITEMS.find((i: Item) => i.id === id);
 
   // If item not found, show error
   if (!item) {
@@ -42,12 +42,12 @@ export default function ItemDetail() {
 
       {/* Price handling */}
       <p className="mt-2 text-lg">
-        {item.free ? "Free" : item.price ? `RR{item.price}` : "Price not listed"}
+        {item.free ? "Free" : item.price ? `R${item.price}` : "Price not listed"}
       </p>
 
       {/* Rating handling */}
       <p className="text-sm text-gray-500">
-        {item.rating ?  R{item.rating}` : "No rating yet"}
+        {item.rating ? `⭐ ${item.rating}` : "No rating yet"}
       </p>
 
       {/* Owner + distance */}
@@ -56,7 +56,6 @@ export default function ItemDetail() {
 
       {/* BOOK NOW button */}
       {isUnavailable ? (
-        // Disabled state if paused/removed
         <button
           disabled
           className="mt-6 w-full bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed"
@@ -64,7 +63,6 @@ export default function ItemDetail() {
           Unavailable
         </button>
       ) : (
-        // Active booking link
         <Link
           to={`/booking/${item.id}`}
           className="mt-6 block text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
@@ -72,21 +70,6 @@ export default function ItemDetail() {
           BOOK NOW
         </Link>
       )}
-    </main>
-  );
-}
-
-
-/* ============================================================
- * ItemDetail.tsx — Placeholder
- * Replace with item detail + BOOK NOW implementation.
- * ============================================================ */
-
-export default function ItemDetail() {
-  return (
-    <main className="p-4">
-      <h1>Item Detail Screen</h1>
-      <p>This is a placeholder. Implement item detail view here.</p>
     </main>
   );
 }
