@@ -128,3 +128,18 @@ export default function Home() {
     </main>
   );
 }
+
+/* ============================================================
+ * Home.tsx — Placeholder
+ * Replace with item listing + filters implementation.
+ * ============================================================ */
+
+export default function Home() {
+  return (
+    <main className="p-4">
+      <h1>Home Screen</h1>
+      <p>This is a placeholder. Implement item browsing here.</p>
+    </main>
+  );
+}
+
