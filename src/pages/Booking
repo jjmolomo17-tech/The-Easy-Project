@@ -103,3 +103,18 @@ export default function Booking() {
     </main>
   );
 }
+
+
+/* ============================================================
+ * Booking.tsx — Placeholder
+ * Replace with booking flow implementation.
+ * ============================================================ */
+
+export default function Booking() {
+  return (
+    <main className="p-4">
+      <h1>Booking Screen</h1>
+      <p>This is a placeholder. Implement booking flow here.</p>
+    </main>
+  );
+}

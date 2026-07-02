@@ -75,3 +75,18 @@ export default function ItemDetail() {
     </main>
   );
 }
+
+
+/* ============================================================
+ * ItemDetail.tsx — Placeholder
+ * Replace with item detail + BOOK NOW implementation.
+ * ============================================================ */
+
+export default function ItemDetail() {
+  return (
+    <main className="p-4">
+      <h1>Item Detail Screen</h1>
+      <p>This is a placeholder. Implement item detail view here.</p>
+    </main>
+  );
+}
