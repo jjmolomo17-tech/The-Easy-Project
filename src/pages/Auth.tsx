@@ -27,7 +27,7 @@ export default function Auth() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // For now, mock authentication (no backend)
+    // ✅ Mock authentication (no backend yet)
     if (email && password) {
       setAuthenticated(true);
 
@@ -38,11 +38,12 @@ export default function Auth() {
 
   return (
     <main className="p-4 max-w-md mx-auto">
+      {/* Heading changes depending on mode */}
       <h1 className="text-2xl font-bold mb-4">
         {mode === "signup" ? "Sign Up" : "Login"}
       </h1>
 
-      {/* Auth form */}
+      {/* Authentication form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
@@ -104,21 +105,3 @@ export default function Auth() {
     </main>
   );
 }
-
-
-/* ============================================================
- * Auth.tsx — Placeholder
- * Replace with login/signup implementation.
- * ============================================================ */
-
-export default function Auth() {
-  return (
-    <main className="p-4">
-      <h1>Auth Screen</h1>
-      <p>This is a placeholder. Implement login/signup here.</p>
-    </main>
-  );
-}
-
-
-
