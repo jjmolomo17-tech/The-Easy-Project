@@ -6,6 +6,7 @@ import Home from "./pages/Home";          // Browse items, search + filters
 import ItemDetail from "./pages/ItemDetail"; // Item info + BOOK NOW
 import Booking from "./pages/Booking";    // Multi-step booking flow
 
+
 // Global UI components (to be implemented in /src/components)
 import Navbar from "./components/Navbar"; // Navigation bar
 
