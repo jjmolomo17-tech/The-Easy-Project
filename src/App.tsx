@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Auth from "./pages/Auth";          // Login/signup before access
 import Home from "./pages/Home";          // Browse items, search + filters
 import ItemDetail from "./pages/ItemDetail.tsx"; // Item info + BOOK NOW
-import Booking from "./pages/Booking.tsx/index.ts";    // Multi-step booking flow
+import Booking from "./pages/Booking";    // Multi-step booking flow
 
 
 // Global UI components (to be implemented in /src/components)

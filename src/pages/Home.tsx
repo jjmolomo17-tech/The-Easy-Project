@@ -11,7 +11,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { items } from "../data/items";
+import { ITEMS } from "../data/items";   // ✅ Correct import name
 import { Item } from "../types/Item";
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
   const [filterFree, setFilterFree] = useState<boolean | null>(null);
 
   // Apply search + filters to items
-  const filteredItems = items.filter((item: Item) => {
+  const filteredItems = ITEMS.filter((item: Item) => {
     // Skip items that are paused or removed
     if (item.status === "paused" || item.status === "removed") return false;
 
@@ -99,7 +99,7 @@ export default function Home() {
 
             {/* Handle missing price */}
             <p className="mt-2">
-              {item.free ? "Free" : item.price ? `$${item.price}` : "Price not listed"}
+              {item.free ? "Free" : item.price ? `R${item.price}` : "Price not listed"}
             </p>
 
             {/* Handle missing rating */}
@@ -128,18 +128,3 @@ export default function Home() {
     </main>
   );
 }
-
-/* ============================================================
- * Home.tsx — Placeholder
- * Replace with item listing + filters implementation.
- * ============================================================ */
-
-export default function Home() {
-  return (
-    <main className="p-4">
-      <h1>Home Screen</h1>
-      <p>This is a placeholder. Implement item browsing here.</p>
-    </main>
-  );
-}
-
