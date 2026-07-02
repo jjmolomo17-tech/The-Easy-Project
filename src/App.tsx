@@ -1,13 +1,18 @@
+/* ============================================================
+ * App.tsx — Main Application Router
+ *
+ * Defines global navigation and routes for all screens.
+ * ============================================================ */
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Screens (to be implemented in /src/pages)
+// Screens (implemented in /src/pages)
 import Auth from "./pages/Auth";          // Login/signup before access
 import Home from "./pages/Home";          // Browse items, search + filters
-import ItemDetail from "./pages/ItemDetail.tsx"; // Item info + BOOK NOW
+import ItemDetail from "./pages/ItemDetail"; // Item info + BOOK NOW
 import Booking from "./pages/Booking";    // Multi-step booking flow
 
-
-// Global UI components (to be implemented in /src/components)
+// Global UI components (implemented in /src/components)
 import Navbar from "./components/Navbar"; // Navigation bar
 
 export function App() {
