@@ -9,14 +9,14 @@
  * ============================================================ */
 
 import { useParams, Link } from "react-router-dom";
-import { ITEMS } from "../data/items";   //  Use correct export name
-import { Item } from "../types/Item";    //  Ensure Item.ts exists
+import { ITEMS } from "../data/items";   // ✅ Correct import
+import { Item } from "../types/Item";    // ✅ Ensure Item.ts matches mock data
 
 export default function ItemDetail() {
   // Get item ID from route
   const { id } = useParams();
 
-  // Find the item by ID
+  // Find the item by ID (typed parameter avoids implicit 'any')
   const item: Item | undefined = ITEMS.find((i: Item) => i.id === id);
 
   // If item not found, show error
@@ -27,32 +27,44 @@ export default function ItemDetail() {
   // Check if item is paused or removed
   const isUnavailable = item.status === "paused" || item.status === "removed";
 
+  // Derive free/paid from price
+  const isFree = !item.price || item.price.amountCents === 0;
+
+  // Use first photo or placeholder
+  const photo = item.photoUrls.length > 0 ? item.photoUrls[0] : "/images/placeholder.png";
+
   return (
     <main className="p-4 max-w-2xl mx-auto">
       {/* Item photo (fallback to placeholder if missing) */}
       <img
-        src={item.image || "/images/placeholder.png"}
-        alt={item.name}
+        src={photo}
+        alt={item.title}
         className="w-full h-60 object-cover rounded mb-4"
       />
 
-      {/* Item name + category */}
-      <h1 className="text-2xl font-bold">{item.name}</h1>
+      {/* Item title + category */}
+      <h1 className="text-2xl font-bold">{item.title}</h1>
       <p className="text-gray-600">{item.category}</p>
 
       {/* Price handling */}
       <p className="mt-2 text-lg">
-        {item.free ? "Free" : item.price ? `R${item.price}` : "Price not listed"}
+        {isFree
+          ? "Free"
+          : `R${(item.price!.amountCents / 100).toFixed(2)} per ${item.price!.period}`}
       </p>
 
       {/* Rating handling */}
       <p className="text-sm text-gray-500">
-        {item.rating ? `⭐ ${item.rating}` : "No rating yet"}
+        {item.owner.rating !== null
+          ? `⭐ ${item.owner.rating} (${item.owner.ratingCount})`
+          : "No rating yet"}
       </p>
 
       {/* Owner + distance */}
-      <p className="text-sm text-gray-500">Owner: {item.owner}</p>
-      <p className="text-sm text-gray-500">{item.distance} km away</p>
+      <p className="text-sm text-gray-500">Owner: {item.owner.displayName}</p>
+      <p className="text-sm text-gray-500">
+        {item.distanceKm !== null ? `${item.distanceKm} km away` : "Distance unknown"}
+      </p>
 
       {/* BOOK NOW button */}
       {isUnavailable ? (
