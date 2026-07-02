@@ -1,4 +1,4 @@
-/* ============================================================
+ /* ============================================================
  * This is a near-empty shell ON PURPOSE.
  *
  * We are not giving you a component structure, a router, a state
